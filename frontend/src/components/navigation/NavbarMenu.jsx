@@ -6,10 +6,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
+import { navLinkStyles } from './navbarStyles';
 
 export default function NavbarMenu({ pages }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const location = useLocation()
+  const path = location.pathname
+  console.log(path)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,11 +48,11 @@ export default function NavbarMenu({ pages }) {
           onClose={handleCloseNavMenu}
         >
           {pages.map((page) => (
-            <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+            <MenuItem key={page.label} onClick={handleCloseNavMenu} selected={path === page.path}>
               {/* Use Link for navigation */}
-              <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <NavLink to={page.path} style={navLinkStyles}>
                 <Typography textAlign="center">{page.label}</Typography>
-              </Link>
+              </NavLink>
             </MenuItem>
           ))}
         </Menu>
@@ -58,12 +63,14 @@ export default function NavbarMenu({ pages }) {
         {pages.map((page) => (
           <Button
           key={page.label}
-          component={Link}
+          component={NavLink}
           to={page.path}
           onClick={handleCloseNavMenu}
           sx={{ my: 2, color: 'white', display: 'block' }}
         >
-          {page.label}
+            <NavLink to={page.path} style={navLinkStyles}>
+              {page.label}
+            </NavLink>
         </Button>
         ))}
       </Box>

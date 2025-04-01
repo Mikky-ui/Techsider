@@ -33,3 +33,9 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+export const navLinkStyles = ({ isActive }) => ({
+    textDecoration: 'none',
+    color: isActive ? 'navy' : 'white', // Change color dynamically based on active state
+    fontWeight: isActive ? 'bold' : 'normal',
+});
