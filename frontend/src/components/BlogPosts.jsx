@@ -4,15 +4,26 @@ import {
   CardContent,
   Typography,
   Chip,
-  Stack
+  Stack,
+  IconButton
 } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
-const BlogPost = ({ post }) => (
+const BlogPost = ({ post, onEdit }) => (
   <Card sx={{ maxWidth: 600, mb: 4, boxShadow: 3 }}>
     <CardContent>
-      <Typography variant="h5" gutterBottom>
-        {post.title}
-      </Typography>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Typography variant="h5" gutterBottom>
+          {post.title}
+        </Typography>
+        <IconButton 
+          aria-label="edit" 
+          onClick={() => onEdit(post)}
+          color="primary"
+        >
+          <EditIcon />
+        </IconButton>
+      </div>
       <Typography variant="body1" color="text.secondary" paragraph>
         {post.content}
       </Typography>
