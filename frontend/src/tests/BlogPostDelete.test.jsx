@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import BlogPostDelete from './BlogPostDelete';
+import BlogPostDelete from '../components/BlogPostDelete';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 // Mock blog post data
 const mockPosts = [
